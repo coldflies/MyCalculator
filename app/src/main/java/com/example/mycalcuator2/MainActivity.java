@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import org.javia.arity.Symbols;
 import org.javia.arity.SyntaxException;
+
+import static java.lang.Math.*;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -41,6 +44,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
             break;
+            case R.id.menu_rate:
+            {
+                Intent qq = new Intent(this,RateActivity.class);
+                startActivity(qq);
+
+            }
+            break;
+            case R.id.menu_system:
+            {
+                Intent qq = new Intent(this,SystemActivity.class);
+                startActivity(qq);
+
+            }
+            break;
+            case R.id.menu_length:
+                Intent qq = new Intent(this,LenghtActivity.class);
+                startActivity(qq);
+                break;
+            case R.id.menu_volume:
+                Intent q = new Intent(this,VolumeActivity.class);
+                startActivity(q);
+                break;
         }
         return true;
     }
@@ -48,14 +73,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //隐藏标题栏
+        //隐藏标题栏(不需要隐藏了)
         /*ActionBar actionBar = getSupportActionBar();
         if(actionBar != null){
             actionBar.hide();
         }*/
 
         //隐藏通知栏
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.calculator);
 
@@ -79,7 +104,91 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btdian = findViewById(R.id.button_dian);
         Button bttui = findViewById(R.id.button_zf);
         Button btce = findViewById(R.id.button_c);
+
+        Button btsin = findViewById(R.id.button_sin);
+        Button btcos = findViewById(R.id.button_cos);
+        Button bttan = findViewById(R.id.button_tan);
+
+        Button btzuo = findViewById(R.id.button_zuo);
+        Button btyou = findViewById(R.id.button_you);
         textview = findViewById(R.id.text_view);
+
+        Configuration mConfiguration = this.getResources().getConfiguration();
+        int ori = mConfiguration.orientation;
+        if(ori == mConfiguration.ORIENTATION_LANDSCAPE){
+            btsin.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    try{
+                        Symbols s = new Symbols();
+                        double res = s.eval(sb.toString());
+
+                        double radians = Math.toRadians(res);
+
+                        textview.setText(String.valueOf(Math.sin(radians)));
+                    }catch(SyntaxException e){
+                        Toast.makeText(MainActivity.this,"error!",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            btcos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try{
+                        Symbols s = new Symbols();
+                        double res = s.eval(sb.toString());
+                        double radians = Math.toRadians(res);
+
+                        textview.setText(String.valueOf(Math.cos(radians)));
+                    }catch(SyntaxException e){
+                        Toast.makeText(MainActivity.this,"error!",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            bttan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try{
+                        Symbols s = new Symbols();
+                        double res = s.eval(sb.toString());
+                        double radians = Math.toRadians(res);
+
+                        textview.setText(String.valueOf(Math.tan(radians)));
+                    }catch(SyntaxException e){
+                        Toast.makeText(MainActivity.this,"error!",Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+            btzuo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(equal){
+                        sb = sb.delete(0,sb.length());
+                        equal = false;
+                    }
+                    sb = sb.append("(");
+                    sing=false;
+                    textview.setText(sb.toString());
+                }
+            });
+            btyou.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(equal){
+                        sb = sb.delete(0,sb.length());
+                        equal = false;
+                    }
+                    sb = sb.append(")");
+                    sing=false;
+                    textview.setText(sb.toString());
+                }
+            });
+
+
+        }
+
+
 
 
         //设置监听事件
@@ -101,20 +210,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btdian.setOnClickListener(this);
         bttui.setOnClickListener(this);
         btdeng.setOnClickListener(this);
+
+
+
+
     }
     private boolean sing = false;
     private boolean dot = false;
     private boolean equal = false;
-
+    private boolean input = false;
     @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View view){
         switch (view.getId()){
+
+
             case R.id.button_0:
                 if(equal){
                     sb = sb.delete(0,sb.length());
                     equal = false;
                 }
+
                 sb = sb.append("0");
                 sing=false;
                 textview.setText(sb.toString());
@@ -209,6 +325,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sb = sb.delete(0, sb.length());
                 textview.setText(sb.toString());
                 break;
+
 
             case R.id.button_zf:
                 if(sb.length() == 0){//如果长度已经为 0，为了不引发程序崩溃，break
@@ -371,10 +488,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     textview.setText(String.valueOf(res));
                 }catch(SyntaxException e){
-                    Toast.makeText(MainActivity.this,"error!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"输入的运算公式有误！",Toast.LENGTH_SHORT).show();
                 }
                 //textview.setText(calculation(sb.toString()));
                 break;
+
 
         }
 

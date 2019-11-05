@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/colorPrimary"
                 android:text="@string/button_c"
                 android:textSize="20sp" />
 
@@ -40,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="长度"
+                android:text="√"
                 android:textSize="20sp" />
 
             <Button
@@ -48,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="体积"
+                android:text="X²"
                 android:textSize="20sp" />
 
 
@@ -60,6 +61,45 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/button_sin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_sin"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_cos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_cos"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_tan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_tan"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/button_cot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COT"
+                android:textSize="20sp" />
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="102dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <Button
                 android:id="@+id/button_jia"
                 android:layout_width="match_parent"
@@ -69,36 +109,18 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button_cheng"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/button_cheng"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/button_sin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="sin"
-                android:textSize="20sp" />
-
-
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <Button
                 android:id="@+id/button_jian"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/button_jian"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/button_cheng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_cheng"
                 android:textSize="20sp" />
 
             <Button
@@ -109,21 +131,9 @@
                 android:text="@string/button_chu"
                 android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/button_cos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="cos"
-                android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/button_er"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="转二"
-                android:textSize="20sp" />
+
+
 
 
         </LinearLayout>

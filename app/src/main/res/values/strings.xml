@@ -21,6 +21,12 @@
     <string name="button_b">%</string>
     <string name="button_zuo">(</string>
     <string name="button_you">)</string>
+    <string name="button_sin">sin</string>
+    <string name="button_tan">tan</string>
+    <string name="button_cos">cos</string>
     <string name="about">关于本app</string>
+    <string name="rate">汇率转换</string>
+    <string name="system">进制转化</string>
+
 </resources>
 
